@@ -57,6 +57,15 @@
     <Compile Include="Batch.cs" />
     <Compile Include="Herb.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202111012316084_InitialCreate.cs" />
+    <Compile Include="Migrations\202111012316084_InitialCreate.Designer.cs">
+      <DependentUpon>202111012316084_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111012332554_InitialMigration.cs" />
+    <Compile Include="Migrations\202111012332554_InitialMigration.Designer.cs">
+      <DependentUpon>202111012332554_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stage.cs" />
@@ -64,6 +73,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202111012316084_InitialCreate.resx">
+      <DependentUpon>202111012316084_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111012332554_InitialMigration.resx">
+      <DependentUpon>202111012332554_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
