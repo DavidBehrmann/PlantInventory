@@ -53,5 +53,16 @@ namespace PlantInventory.MVC.Controllers
             var service = new HerbService(userId);
             return service;
         }
+
+        public ActionResult Details(int id)
+        {
+            
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new HerbService(userId);
+            var model = service.GetHerbByID(id);
+
+            return View(model);
+            
+        }
     }
 }
