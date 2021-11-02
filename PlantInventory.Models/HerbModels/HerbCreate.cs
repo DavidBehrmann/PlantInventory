@@ -11,6 +11,8 @@ namespace PlantInventory.Models.HerbModels
     {
         
         [Required]
+        [Display(Name = "Herb Name")]
+
         public string HerbName { get; set; }
     }
 }

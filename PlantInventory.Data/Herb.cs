@@ -14,7 +14,7 @@ namespace PlantInventory.Data
         [Required]
         public Guid UserId { get; set; }
         [Required]
-        [Display(Name = "Herb Name")]
+        
         public string HerbName { get; set; }
     }
 }

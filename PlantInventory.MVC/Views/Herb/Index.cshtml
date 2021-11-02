@@ -1,0 +1,41 @@
+﻿@model IEnumerable<PlantInventory.Models.HerbModels.HerbDetail>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Plant Inventory</h2>
+
+
+<br />
+
+<h3>Current Inventory</h3>
+<p>
+    @Html.ActionLink("Add New Herb", "Create")
+</p>
+<table class="table-hover, table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HerbName)
+        </th>
+    </tr>
+        @foreach (var item in Model)
+            {
+    <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HerbName)
+                </td>
+    </tr>
+            }
+</table>
+
+
+<br />
+<h3>Previous Inventory</h3>
+<table class="table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HerbName)
+        </th>
+    </tr>
+</table>
+
