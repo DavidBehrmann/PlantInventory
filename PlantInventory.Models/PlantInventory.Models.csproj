@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BatchModels\BatchCreate.cs" />
+    <Compile Include="BatchModels\BatchDetail.cs" />
     <Compile Include="HerbModels\HerbCreate.cs" />
     <Compile Include="HerbModels\HerbDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

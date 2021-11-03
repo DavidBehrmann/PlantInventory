@@ -59,6 +59,18 @@ namespace PlantInventory.Services
                 };
             }
         }
+
+        //Get Herb Name
+        public string GetHerbName(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Herbs.First(e => e.HerbId == id);
+                return entity.HerbName;
+                
+            }
+        }
+
         //Update Herb(Not MVP)
 
 

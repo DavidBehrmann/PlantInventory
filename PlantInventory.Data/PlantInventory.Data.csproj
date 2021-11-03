@@ -65,6 +65,10 @@
     <Compile Include="Migrations\202111012332554_InitialMigration.Designer.cs">
       <DependentUpon>202111012332554_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111022240256_AddedBatchService.cs" />
+    <Compile Include="Migrations\202111022240256_AddedBatchService.Designer.cs">
+      <DependentUpon>202111022240256_AddedBatchService.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111012332554_InitialMigration.resx">
       <DependentUpon>202111012332554_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111022240256_AddedBatchService.resx">
+      <DependentUpon>202111022240256_AddedBatchService.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
