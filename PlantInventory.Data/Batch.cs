@@ -13,7 +13,7 @@ namespace PlantInventory.Data
         [Key]
         public int BatchId { get; set; }
         [ForeignKey("Herb")]
-        public int HerbID { get; set; }
+        public int HerbId { get; set; }
         public virtual Herb Herb { get; set; }
         [Required]
         public Guid UserId { get; set; }
@@ -21,5 +21,7 @@ namespace PlantInventory.Data
         public int TotalPotCount { get; set; }
         [Required]
         public DateTimeOffset DateReceived { get; set; }
+        public DateTimeOffset ModifiedUTC { get; set; }
+
     }
 }

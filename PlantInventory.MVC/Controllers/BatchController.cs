@@ -31,7 +31,7 @@ namespace PlantInventory.MVC.Controllers
             {
                 var herbService = CreateHerbService();
 
-                var herbName = herbService.GetHerbName(model.HerbID);
+                var herbName = herbService.GetHerbName(model.HerbId);
 
                 TempData["SaveResult"] = $"You have created a new batch of {herbName} received on {model.DateReceived.DayOfYear}.";
                 return RedirectToAction("Index");

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace PlantInventory.Models.BatchModels
 {
-    public class BatchCreate
+    public class BatchEdit
     {
-        [Required]
+        
         [Display(Name = "Herb")]
         public int HerbId { get; set; }
-        [Required]
+        public int BatchId { get; set; }
         public int TotalPotCount { get; set; }
-        [Required]
-        public DateTimeOffset DateReceived { get; set; }
+        public DateTimeOffset ModifiedUTC { get; set; }
+
     }
 }

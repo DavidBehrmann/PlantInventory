@@ -23,7 +23,7 @@ namespace PlantInventory.Services
             var entity = new Batch()
             {
                 UserId = _userID,
-                HerbID = model.HerbID,
+                HerbId = model.HerbId,
                 TotalPotCount = model.TotalPotCount,
                 DateReceived = model.DateReceived
             };
@@ -52,7 +52,19 @@ namespace PlantInventory.Services
         
         
         //Edit Batch
+        public bool UpdateBatch(BatchEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Batches.Single(e => e.BatchId == model.BatchId);
 
+                entity.HerbId = model.HerbId;
+                entity.TotalPotCount = model.TotalPotCount;
+                entity.ModifiedUTC = DateTimeOffset.Now;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
 
     }
 }

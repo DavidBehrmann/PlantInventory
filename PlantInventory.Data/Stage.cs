@@ -13,7 +13,7 @@ namespace PlantInventory.Data
         [Key]
         public int StageId { get; set; }
         [ForeignKey("Batch")]
-        public int BatchID { get; set; }
+        public int BatchId { get; set; }
         public virtual Batch Batch { get; set; }
         public int CountGrowRoom { get; set; }
         public int CountPacking { get; set; }

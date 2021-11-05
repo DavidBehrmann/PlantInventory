@@ -56,8 +56,11 @@
   <ItemGroup>
     <Compile Include="BatchModels\BatchCreate.cs" />
     <Compile Include="BatchModels\BatchDetail.cs" />
+    <Compile Include="BatchModels\BatchEdit.cs" />
     <Compile Include="HerbModels\HerbCreate.cs" />
     <Compile Include="HerbModels\HerbDetail.cs" />
+    <Compile Include="MoveModels\MoveCreate.cs" />
+    <Compile Include="MoveModels\MoveDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,8 +68,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MoveModels\" />
     <Folder Include="StageModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PlantInventory.Data\PlantInventory.Data.csproj">
+      <Project>{753BF021-4AC8-4532-97DF-B706E37FC6F6}</Project>
+      <Name>PlantInventory.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
