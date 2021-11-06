@@ -17,31 +17,7 @@ namespace PlantInventory.Data
     }
     public class Move
     {
-        public Move()
-        {
-        }
-
-        public Move(int moveId, int batchId, location moveFrom, location moveTo, int numberOfPotsMoved, DateTimeOffset dateMoved)
-        {
-            MoveId = moveId;
-            BatchId = batchId;
-            MoveFrom = moveFrom;
-            MoveTo = moveTo;
-            NumberOfPotsMoved = numberOfPotsMoved;
-            DateMoved = dateMoved;
-        }
-
-        public Move(int moveId, int batchId, location moveFrom, location moveTo, int numberOfPotsMoved, string comment, DateTimeOffset dateMoved)
-        {
-            MoveId = moveId;
-            BatchId = batchId;
-            MoveFrom = moveFrom;
-            MoveTo = moveTo;
-            NumberOfPotsMoved = numberOfPotsMoved;
-            Comment = comment;
-            DateMoved = dateMoved;
-        }
-
+        
         [Key]
         public int MoveId { get; set; }
         [ForeignKey("Batch")]

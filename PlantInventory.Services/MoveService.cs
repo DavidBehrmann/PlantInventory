@@ -38,15 +38,14 @@ namespace PlantInventory.Services
             }
         }
         //Get Move List
-        public IEnumerable<MoveDetail> GetAllMoves()
+        public IEnumerable<MoveDetail> GetAllMovesForABatch(int batchId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Moves.Where(e => e.UserId == _userID).Select(
+                var query = ctx.Moves.Where(e => e.BatchId == batchId).Select(
                     e => new MoveDetail
                     {
                         MoveId = e.MoveId,
-                        BatchId = e.BatchId,
                         MoveFrom = e.MoveFrom,
                         MoveTo = e.MoveTo,
                         NumberOfPotsMoved = e.NumberOfPotsMoved,
@@ -57,9 +56,25 @@ namespace PlantInventory.Services
         }
 
         //Get Move Detail
-
-        //Update Move
-
+        public MoveDetail GetMoveByID(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Moves.Single(e => e.MoveId == id);
+                return new MoveDetail
+                {
+                    MoveId = entity.MoveId,
+                    BatchId = entity.BatchId,
+                    MoveFrom = entity.MoveFrom,
+                    MoveTo = entity.MoveTo,
+                    Comment = entity.Comment,
+                    NumberOfPotsMoved = entity.NumberOfPotsMoved,
+                    DateMoved = entity.DateMoved
+                };
+            }
+        }
+        
+        
 
 
     }
