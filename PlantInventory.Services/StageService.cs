@@ -17,7 +17,7 @@ namespace PlantInventory.Services
             _userID = userID;
         }
         //Create Stage
-        public bool CreateBatch(StageCreate model)
+        public bool CreateStage(StageCreate model)
         {
             var entity = new Stage()
             {

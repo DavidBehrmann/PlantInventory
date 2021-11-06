@@ -35,5 +35,6 @@ namespace PlantInventory.Data
         [Required]
         public DateTimeOffset DateMoved { get; set; }
 
+
     }
 }

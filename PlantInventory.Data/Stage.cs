@@ -23,5 +23,6 @@ namespace PlantInventory.Data
         public int CountFreshCut { get; set; }
         public int CountDump { get; set; }
 
+
     }
 }

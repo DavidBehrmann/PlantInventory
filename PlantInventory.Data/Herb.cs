@@ -16,5 +16,6 @@ namespace PlantInventory.Data
         [Required]
         
         public string HerbName { get; set; }
+
     }
 }
