@@ -14,5 +14,7 @@ namespace PlantInventory.Models.StageModels
         public int CountPacking { get; set; }
         public int CountFreshCut { get; set; }
         public int CountDump { get; set; }
+        public bool IsArchived { get; set; }
+
     }
 }

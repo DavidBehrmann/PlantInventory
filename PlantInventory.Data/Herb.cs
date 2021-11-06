@@ -17,5 +17,7 @@ namespace PlantInventory.Data
         
         public string HerbName { get; set; }
 
+        public bool IsArchived { get; set; }
+
     }
 }

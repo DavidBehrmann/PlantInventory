@@ -66,5 +66,17 @@ namespace PlantInventory.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+        //Archive Stage
+        public bool ArchiveBatch(StageArchive model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Stages.Single(e => e.StageId == model.StageId);
+
+                entity.IsArchived = model.IsArchived;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

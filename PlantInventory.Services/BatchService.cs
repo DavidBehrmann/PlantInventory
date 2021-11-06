@@ -33,7 +33,21 @@ namespace PlantInventory.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-
+        //Get all Batches
+        public IEnumerable<BatchDetail> GetBatches()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Batches.Where(e => e.UserId == _userID).Select(
+                    e => new BatchDetail
+                    {
+                        BatchId = e.BatchId,
+                        TotalPotCount = e.TotalPotCount,
+                        DateReceived = e.DateReceived
+                    });
+                return query.ToArray();
+            }
+        }
         //Get Batch by ID
         public BatchDetail GetBatchByID(int id)
         {
@@ -61,6 +75,19 @@ namespace PlantInventory.Services
                 entity.HerbId = model.HerbId;
                 entity.TotalPotCount = model.TotalPotCount;
                 entity.ModifiedUTC = DateTimeOffset.Now;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        //Archive Batch
+        public bool ArchiveBatch(BatchArchive model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Batches.Single(e => e.BatchId == model.BatchId);
+
+                entity.IsArchived = model.IsArchived;
 
                 return ctx.SaveChanges() == 1;
             }

@@ -77,6 +77,10 @@
     <Compile Include="Migrations\202111061514029_AddedServiceLayerMVP.Designer.cs">
       <DependentUpon>202111061514029_AddedServiceLayerMVP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111062321352_AddedArchiveFunction.cs" />
+    <Compile Include="Migrations\202111062321352_AddedArchiveFunction.Designer.cs">
+      <DependentUpon>202111062321352_AddedArchiveFunction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111061514029_AddedServiceLayerMVP.resx">
       <DependentUpon>202111061514029_AddedServiceLayerMVP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111062321352_AddedArchiveFunction.resx">
+      <DependentUpon>202111062321352_AddedArchiveFunction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

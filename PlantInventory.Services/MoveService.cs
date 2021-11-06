@@ -73,8 +73,19 @@ namespace PlantInventory.Services
                 };
             }
         }
-        
-        
+
+        //Archive Move
+        public bool ArchiveBatch(MoveArchive model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Moves.Single(e => e.MoveId == model.MoveId);
+
+                entity.IsArchived = model.IsArchived;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
 
 
     }

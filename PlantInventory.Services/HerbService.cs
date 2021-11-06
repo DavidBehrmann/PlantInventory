@@ -71,7 +71,18 @@ namespace PlantInventory.Services
             }
         }
 
-        //Update Herb(Not MVP)
+        //Archive Herb
+        public bool ArchiveBatch(HerbArchive model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Herbs.Single(e => e.HerbId == model.HerbId);
+
+                entity.IsArchived = model.IsArchived;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
 
 
     }

@@ -13,6 +13,13 @@ namespace PlantInventory.MVC.Controllers
     public class BatchController : Controller
     {
         // GET: Batch
+        public ActionResult Index()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new BatchService(userId);
+            var model = service.GetBatches();
+            return View(model);
+        }
         public ActionResult Create()
         {
             return View();
@@ -30,11 +37,8 @@ namespace PlantInventory.MVC.Controllers
             if (service.CreateBatch(model))
             {
                 var herbService = CreateHerbService();
-                var stageService = CreateStageService();
                 var herbName = herbService.GetHerbName(model.HerbId);
-
-
-
+                
                 TempData["SaveResult"] = $"You have created a new batch of {herbName} received on {model.DateReceived.DayOfYear}.";
                 return RedirectToAction("Index");
             }
@@ -54,12 +58,7 @@ namespace PlantInventory.MVC.Controllers
             var service = new BatchService(userId);
             return service;
         }
-        private StageService CreateStageService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new StageService(userId);
-            return service;
-        }
+        
 
         public ActionResult GetBatchByID(int id)
         {

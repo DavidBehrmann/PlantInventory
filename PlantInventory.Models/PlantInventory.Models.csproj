@@ -54,14 +54,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BatchModels\BatchArchive.cs" />
     <Compile Include="BatchModels\BatchCreate.cs" />
     <Compile Include="BatchModels\BatchDetail.cs" />
     <Compile Include="BatchModels\BatchEdit.cs" />
+    <Compile Include="HerbModels\HerbArchive.cs" />
     <Compile Include="HerbModels\HerbCreate.cs" />
     <Compile Include="HerbModels\HerbDetail.cs" />
+    <Compile Include="MoveModels\MoveArchive.cs" />
     <Compile Include="MoveModels\MoveCreate.cs" />
     <Compile Include="MoveModels\MoveDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StageModels\StageArchive.cs" />
     <Compile Include="StageModels\StageCreate.cs" />
     <Compile Include="StageModels\StageDetail.cs" />
     <Compile Include="StageModels\StageEdit.cs" />
