@@ -15,5 +15,7 @@ namespace PlantInventory.Models.MoveModels
         public int NumberOfPotsMoved { get; set; }
         public string Comment { get; set; }
         public DateTimeOffset DateMoved { get; set; }
+        public bool IsArchived { get; set; }
+
     }
 }

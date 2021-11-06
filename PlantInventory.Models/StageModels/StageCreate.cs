@@ -19,6 +19,8 @@ namespace PlantInventory.Models.StageModels
             CountPacking = countPacking;
             CountFreshCut = countFreshCut;
             CountDump = countDump;
+            IsArchived = false;
+            
         }
 
         public int BatchId { get; set; }
@@ -26,5 +28,7 @@ namespace PlantInventory.Models.StageModels
         public int CountPacking { get; set; }
         public int CountFreshCut { get; set; }
         public int CountDump { get; set; }
+        public bool IsArchived { get; set; }
+
     }
 }

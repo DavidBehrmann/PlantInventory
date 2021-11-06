@@ -24,7 +24,8 @@ namespace PlantInventory.Services
             var entity = new Herb()
             {
                 UserId = _userID,
-                HerbName = model.HerbName
+                HerbName = model.HerbName,
+                IsArchived = false
             };
             using (var ctx = new ApplicationDbContext())
             {
@@ -37,7 +38,7 @@ namespace PlantInventory.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Herbs.Where(e => e.UserId == _userID).Select(
+                var query = ctx.Herbs.Where(e => e.UserId == _userID && e.IsArchived == false).Select(
                     e => new HerbDetail
                     {
                         HerbId = e.HerbId,
@@ -46,6 +47,22 @@ namespace PlantInventory.Services
                 return query.ToArray();
             }
         }
+        //Get All Archived Herb Inventory
+        public IEnumerable<HerbDetail> GetAllArchivedHerbInventory()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Herbs.Where(e => e.UserId == _userID && e.IsArchived == true).Select(
+                    e => new HerbDetail
+                    {
+                        HerbId = e.HerbId,
+                        HerbName = e.HerbName
+                    });
+                return query.ToArray();
+            }
+        }
+
+
         //Get Herb by ID
         public HerbDetail GetHerbByID(int id)
         {
@@ -72,7 +89,7 @@ namespace PlantInventory.Services
         }
 
         //Archive Herb
-        public bool ArchiveBatch(HerbArchive model)
+        public bool ArchiveHerb(HerbArchive model)
         {
             using (var ctx = new ApplicationDbContext())
             {

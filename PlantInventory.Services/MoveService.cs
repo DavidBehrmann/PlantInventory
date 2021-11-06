@@ -28,7 +28,8 @@ namespace PlantInventory.Services
                 MoveTo = model.MoveTo,
                 NumberOfPotsMoved = model.NumberOfPotsMoved,
                 Comment = model.Comment,
-                DateMoved = DateTimeOffset.Now
+                DateMoved = DateTimeOffset.Now,
+                IsArchived = false
                 
             };
             using (var ctx = new ApplicationDbContext())
@@ -75,7 +76,7 @@ namespace PlantInventory.Services
         }
 
         //Archive Move
-        public bool ArchiveBatch(MoveArchive model)
+        public bool ArchiveMove(MoveArchive model)
         {
             using (var ctx = new ApplicationDbContext())
             {

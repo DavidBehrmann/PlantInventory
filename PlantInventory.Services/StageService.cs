@@ -26,7 +26,8 @@ namespace PlantInventory.Services
                 CountGrowRoom = model.CountGrowRoom,
                 CountPacking = model.CountPacking,
                 CountFreshCut = model.CountFreshCut,
-                CountDump = model.CountDump
+                CountDump = model.CountDump,
+                IsArchived = false
             };
             using (var ctx = new ApplicationDbContext())
             {
@@ -67,7 +68,7 @@ namespace PlantInventory.Services
             }
         }
         //Archive Stage
-        public bool ArchiveBatch(StageArchive model)
+        public bool ArchiveStage(StageArchive model)
         {
             using (var ctx = new ApplicationDbContext())
             {

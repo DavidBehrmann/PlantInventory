@@ -25,7 +25,8 @@ namespace PlantInventory.Services
                 UserId = _userID,
                 HerbId = model.HerbId,
                 TotalPotCount = model.TotalPotCount,
-                DateReceived = model.DateReceived
+                DateReceived = model.DateReceived,
+                IsArchived = false
             };
             using (var ctx = new ApplicationDbContext())
             {
@@ -38,7 +39,22 @@ namespace PlantInventory.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Batches.Where(e => e.UserId == _userID).Select(
+                var query = ctx.Batches.Where(e => e.UserId == _userID && e.IsArchived == false).Select(
+                    e => new BatchDetail
+                    {
+                        BatchId = e.BatchId,
+                        TotalPotCount = e.TotalPotCount,
+                        DateReceived = e.DateReceived
+                    });
+                return query.ToArray();
+            }
+        }
+        //Get all Archived Batches
+        public IEnumerable<BatchDetail> GetArchivedBatches()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Batches.Where(e => e.UserId == _userID && e.IsArchived == true).Select(
                     e => new BatchDetail
                     {
                         BatchId = e.BatchId,
