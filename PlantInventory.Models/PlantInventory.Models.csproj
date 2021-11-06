@@ -62,14 +62,15 @@
     <Compile Include="MoveModels\MoveCreate.cs" />
     <Compile Include="MoveModels\MoveDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StageModels\StageCreate.cs" />
+    <Compile Include="StageModels\StageDetail.cs" />
+    <Compile Include="StageModels\StageEdit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="StageModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\PlantInventory.Data\PlantInventory.Data.csproj">
       <Project>{753BF021-4AC8-4532-97DF-B706E37FC6F6}</Project>

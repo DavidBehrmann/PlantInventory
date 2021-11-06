@@ -73,6 +73,10 @@
     <Compile Include="Migrations\202111042306376_AddedBatchService1.Designer.cs">
       <DependentUpon>202111042306376_AddedBatchService1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111061514029_AddedServiceLayerMVP.cs" />
+    <Compile Include="Migrations\202111061514029_AddedServiceLayerMVP.Designer.cs">
+      <DependentUpon>202111061514029_AddedServiceLayerMVP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111042306376_AddedBatchService1.resx">
       <DependentUpon>202111042306376_AddedBatchService1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111061514029_AddedServiceLayerMVP.resx">
+      <DependentUpon>202111061514029_AddedServiceLayerMVP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
