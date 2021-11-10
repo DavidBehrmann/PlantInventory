@@ -13,6 +13,8 @@ namespace PlantInventory.Models.HerbModels
         [Display(Name = "Herb Name")]
         public string HerbName { get; set; }
         public bool IsArchived { get; set; }
+        public string ArchiveComment { get; set; }
+
 
 
     }

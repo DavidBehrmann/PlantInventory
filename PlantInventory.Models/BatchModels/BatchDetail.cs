@@ -11,10 +11,16 @@ namespace PlantInventory.Models.BatchModels
     {
         public int BatchId { get; set; }
         [Required]
+        [Display(Name = "Herb")]
+        public int HerbId { get; set; }
         public int TotalPotCount { get; set; }
         [Required]
-        public DateTimeOffset DateReceived { get; set; }
         public bool IsArchived { get; set; }
+        public string ArchiveComment { get; set; }
 
+
+        public DateTimeOffset DateReceived { get; set; }
+       
+        public DateTimeOffset ModifiedUTC { get; set; }
     }
 }

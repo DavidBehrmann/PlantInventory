@@ -39,18 +39,42 @@ namespace PlantInventory.Services
             }
         }
         //Get Move List
-        public IEnumerable<MoveDetail> GetAllMovesForABatch(int batchId)
+        public IEnumerable<MoveDetail> GetAllMovesForABatchNotArchived(int batchId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Moves.Where(e => e.BatchId == batchId).Select(
+                var query = ctx.Moves.Where(e => e.BatchId == batchId && e.IsArchived == false).Select(
                     e => new MoveDetail
                     {
                         MoveId = e.MoveId,
+                        BatchId = e.BatchId,
                         MoveFrom = e.MoveFrom,
                         MoveTo = e.MoveTo,
                         NumberOfPotsMoved = e.NumberOfPotsMoved,
-                        DateMoved = e.DateMoved
+                        DateMoved = e.DateMoved,
+                        Comment = e.Comment,
+                        ModifiedUTC = e.ModifiedUTC
+                    });
+                return query.ToArray();
+            }
+        }
+        public IEnumerable<MoveDetail> GetAllMovesForABatchArchived(int batchId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Moves.Where(e => e.BatchId == batchId && e.IsArchived == true).Select(
+                    e => new MoveDetail
+                    {
+                        MoveId = e.MoveId,
+                        BatchId = e.BatchId,
+                        MoveFrom = e.MoveFrom,
+                        MoveTo = e.MoveTo,
+                        NumberOfPotsMoved = e.NumberOfPotsMoved,
+                        DateMoved = e.DateMoved,
+                        Comment = e.Comment,
+                        ModifiedUTC = e.ModifiedUTC,
+                        ArchiveComment = e.ArchiveComment
+
                     });
                 return query.ToArray();
             }
@@ -70,19 +94,28 @@ namespace PlantInventory.Services
                     MoveTo = entity.MoveTo,
                     Comment = entity.Comment,
                     NumberOfPotsMoved = entity.NumberOfPotsMoved,
-                    DateMoved = entity.DateMoved
+                    DateMoved = entity.DateMoved,
+                    ModifiedUTC = entity.ModifiedUTC,
+                    IsArchived = entity.IsArchived,
+                    ArchiveComment = entity.ArchiveComment
                 };
             }
         }
 
-        //Archive Move
-        public bool ArchiveMove(MoveArchive model)
+        //Edit Move
+        public bool EditMove(MoveEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Moves.Single(e => e.MoveId == model.MoveId);
 
+                entity.MoveFrom = model.MoveFrom;
+                entity.MoveTo = model.MoveTo;
+                entity.NumberOfPotsMoved = model.NumberOfPotsMoved;
+                entity.Comment = model.Comment;
                 entity.IsArchived = model.IsArchived;
+                entity.ArchiveComment = model.ArchiveComment;
+                entity.ModifiedUTC = DateTimeOffset.Now;
 
                 return ctx.SaveChanges() == 1;
             }

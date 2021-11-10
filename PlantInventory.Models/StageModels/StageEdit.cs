@@ -15,6 +15,8 @@ namespace PlantInventory.Models.StageModels
         public int CountFreshCut { get; set; }
         public int CountDump { get; set; }
         public bool IsArchived { get; set; }
+        public string ArchiveComment { get; set; }
+
 
     }
 }

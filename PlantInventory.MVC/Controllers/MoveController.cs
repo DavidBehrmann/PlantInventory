@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using PlantInventory.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,15 @@ namespace PlantInventory.MVC.Controllers
 {
     public class MoveController : Controller
     {
+        [Authorize]
         // GET: Move
-        public ActionResult Index()
+        public ActionResult Index(int batchId)
         {
-            return View();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new MoveService(userId);
+            var model = service.GetAllMovesForABatchNotArchived(batchId);
+
+            return View(model);
         }
     }
 }

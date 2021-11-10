@@ -56,7 +56,8 @@ namespace PlantInventory.Services
                     e => new HerbDetail
                     {
                         HerbId = e.HerbId,
-                        HerbName = e.HerbName
+                        HerbName = e.HerbName,
+                        ArchiveComment = e.ArchiveComment
                     });
                 return query.ToArray();
             }
@@ -72,7 +73,9 @@ namespace PlantInventory.Services
                 return new HerbDetail
                 {
                     HerbId = entity.HerbId,
-                    HerbName = entity.HerbName
+                    HerbName = entity.HerbName,
+                    ArchiveComment = entity.ArchiveComment,
+                    IsArchived = entity.IsArchived
                 };
             }
         }
@@ -88,14 +91,16 @@ namespace PlantInventory.Services
             }
         }
 
-        //Archive Herb
-        public bool ArchiveHerb(HerbArchive model)
+        //Edit Herb
+        public bool EditHerb(HerbEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Herbs.Single(e => e.HerbId == model.HerbId);
 
+                entity.HerbName = model.HerbName;
                 entity.IsArchived = model.IsArchived;
+                entity.ArchiveComment = model.ArchiveComment;
 
                 return ctx.SaveChanges() == 1;
             }

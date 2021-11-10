@@ -16,6 +16,7 @@ namespace PlantInventory.Models.BatchModels
         public int TotalPotCount { get; set; }
         public DateTimeOffset ModifiedUTC { get; set; }
         public bool IsArchived { get; set; }
+        public string ArchiveComment { get; set; }
 
 
     }

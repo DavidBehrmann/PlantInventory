@@ -23,6 +23,8 @@ namespace PlantInventory.Data
         public DateTimeOffset DateReceived { get; set; }
         public DateTimeOffset ModifiedUTC { get; set; }
         public bool IsArchived { get; set; }
+        public string ArchiveComment { get; set; }
+
 
 
     }

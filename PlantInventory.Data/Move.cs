@@ -34,8 +34,12 @@ namespace PlantInventory.Data
         public string Comment { get; set; }
         [Required]
         public DateTimeOffset DateMoved { get; set; }
+        [Display(Name = "Date Modified")]
+        public DateTimeOffset ModifiedUTC { get; set; }
 
         public bool IsArchived { get; set; }
+        public string ArchiveComment { get; set; }
+
 
     }
 }

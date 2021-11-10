@@ -35,11 +35,11 @@ namespace PlantInventory.Services
             }
         }
         //Get all Batches
-        public IEnumerable<BatchDetail> GetBatches()
+        public IEnumerable<BatchDetail> GetBatches(int herbId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Batches.Where(e => e.UserId == _userID && e.IsArchived == false).Select(
+                var query = ctx.Batches.Where(e => e.HerbId == herbId && e.IsArchived == false).Select(
                     e => new BatchDetail
                     {
                         BatchId = e.BatchId,
@@ -50,16 +50,17 @@ namespace PlantInventory.Services
             }
         }
         //Get all Archived Batches
-        public IEnumerable<BatchDetail> GetArchivedBatches()
+        public IEnumerable<BatchDetail> GetArchivedBatches(int herbId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Batches.Where(e => e.UserId == _userID && e.IsArchived == true).Select(
+                var query = ctx.Batches.Where(e => e.HerbId == herbId && e.IsArchived == true).Select(
                     e => new BatchDetail
                     {
                         BatchId = e.BatchId,
                         TotalPotCount = e.TotalPotCount,
-                        DateReceived = e.DateReceived
+                        DateReceived = e.DateReceived,
+                        ArchiveComment = e.ArchiveComment
                     });
                 return query.ToArray();
             }
@@ -74,7 +75,8 @@ namespace PlantInventory.Services
                 {
                     BatchId = entity.BatchId,
                     TotalPotCount = entity.TotalPotCount,
-                    DateReceived = entity.DateReceived
+                    DateReceived = entity.DateReceived,
+                    ArchiveComment = entity.ArchiveComment
                 };
             }
         }
@@ -82,7 +84,7 @@ namespace PlantInventory.Services
         
         
         //Edit Batch
-        public bool UpdateBatch(BatchEdit model)
+        public bool EditBatch(BatchEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -91,23 +93,14 @@ namespace PlantInventory.Services
                 entity.HerbId = model.HerbId;
                 entity.TotalPotCount = model.TotalPotCount;
                 entity.ModifiedUTC = DateTimeOffset.Now;
-
-                return ctx.SaveChanges() == 1;
-            }
-        }
-
-        //Archive Batch
-        public bool ArchiveBatch(BatchArchive model)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity = ctx.Batches.Single(e => e.BatchId == model.BatchId);
-
                 entity.IsArchived = model.IsArchived;
+                entity.ArchiveComment = model.ArchiveComment;
 
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        
 
     }
 }

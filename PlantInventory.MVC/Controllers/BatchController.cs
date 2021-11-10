@@ -12,12 +12,25 @@ namespace PlantInventory.MVC.Controllers
     [Authorize]
     public class BatchController : Controller
     {
-        // GET: Batch
-        public ActionResult Index()
+        private HerbService CreateHerbService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new HerbService(userId);
+            return service;
+        }
+
+        private BatchService CreateBatchService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new BatchService(userId);
-            var model = service.GetBatches();
+            return service;
+        }
+        // GET: Batch
+        public ActionResult Index(int herbId)
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new BatchService(userId);
+            var model = service.GetBatches(herbId);
             return View(model);
         }
         public ActionResult Create()
@@ -45,19 +58,6 @@ namespace PlantInventory.MVC.Controllers
             ModelState.AddModelError("", "The batch could not be created.");
             return View(model);
         }
-        private HerbService CreateHerbService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new HerbService(userId);
-            return service;
-        }
-
-        private BatchService CreateBatchService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new BatchService(userId);
-            return service;
-        }
         
 
         public ActionResult GetBatchByID(int id)
@@ -68,6 +68,19 @@ namespace PlantInventory.MVC.Controllers
 
             return View(model);
         }
-
+        public ActionResult Edit(int id)
+        {
+            var service = CreateBatchService();
+            var edit = service.GetBatchByID(id);
+            var model = new BatchEdit
+            {
+                HerbId = edit.HerbId,
+                TotalPotCount = edit.TotalPotCount,
+                ModifiedUTC = DateTimeOffset.Now,
+                IsArchived = edit.IsArchived,
+                ArchiveComment = edit.ArchiveComment
+            };
+            return View(model);
+        }
     }
 }

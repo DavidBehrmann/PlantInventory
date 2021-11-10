@@ -36,24 +36,26 @@ namespace PlantInventory.Services
             }
         }
         //Get Stage by ID (stage and batch are 1 to 1)
-        public StageCreate GetStageByID(int id)
+        public StageDetail GetStageByID(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Stages.Single(e => e.BatchId == id);
-                return new StageCreate
+                return new StageDetail
                 {
                     BatchId = entity.BatchId,
                     CountGrowRoom = entity.CountGrowRoom,
                     CountPacking = entity.CountPacking,
                     CountFreshCut = entity.CountFreshCut,
-                    CountDump = entity.CountDump
+                    CountDump = entity.CountDump,
+                    IsArchived = entity.IsArchived,
+                    ArchiveComment = entity.ArchiveComment
                 };
             }
         }
 
         //Update Stage 
-        public bool UpdateStage(StageEdit model)
+        public bool EditStage(StageEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -63,21 +65,12 @@ namespace PlantInventory.Services
                 entity.CountPacking = model.CountPacking;
                 entity.CountFreshCut = model.CountFreshCut;
                 entity.CountDump = model.CountDump;
-
-                return ctx.SaveChanges() == 1;
-            }
-        }
-        //Archive Stage
-        public bool ArchiveStage(StageArchive model)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity = ctx.Stages.Single(e => e.StageId == model.StageId);
-
                 entity.IsArchived = model.IsArchived;
+                entity.ArchiveComment = model.ArchiveComment;
 
                 return ctx.SaveChanges() == 1;
             }
         }
+        
     }
 }

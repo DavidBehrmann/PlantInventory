@@ -238,13 +238,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Herb\Create.cshtml" />
-    <Content Include="Views\Herb\Index.cshtml" />
-    <Content Include="Views\Herb\Details.cshtml" />
-    <Content Include="Views\Batch\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Batch\" />
+    <Folder Include="Views\Herb\" />
     <Folder Include="Views\Move\" />
     <Folder Include="Views\Stage\" />
   </ItemGroup>
