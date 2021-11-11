@@ -65,7 +65,7 @@ namespace PlantInventory.MVC.Controllers
             
         }
         //make an edit service method/view
-        public ActionResult Edit(int id)
+        public ActionResult EditHerb(int id)
         {
             var service = CreateHerbService();
             var edit = service.GetHerbByID(id);
@@ -75,6 +75,29 @@ namespace PlantInventory.MVC.Controllers
                 IsArchived = edit.IsArchived,
                 ArchiveComment = edit.ArchiveComment
             };
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditHerb(int id, HerbEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.HerbId != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            }
+
+            var service = CreateHerbService();
+
+            if (service.EditHerb(model))
+            {
+                TempData["SaveResult"] = "You have updated this Herb.";
+                return RedirectToAction("Index"); 
+            }
+
+            ModelState.AddModelError("", "We were unable to update the Herb.");
             return View(model);
         }
 

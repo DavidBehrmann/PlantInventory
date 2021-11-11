@@ -53,9 +53,10 @@ namespace PlantInventory.MVC.Controllers
 
             if (service.CreateMove(model))
             {
+                var herbService = CreateHerbService();
                 var batchService = CreateBatchService();
                 var herbId = batchService.GetBatchByID(model.BatchId).HerbId;
-                var herbName = herbId;
+                var herbName = herbService.GetHerbName(herbId);
 
                 TempData["SaveResult"] = $"You have moved {model.NumberOfPotsMoved} pots of {herbName} from {model.MoveFrom} to {model.MoveTo}.";
                 return RedirectToAction("Index");

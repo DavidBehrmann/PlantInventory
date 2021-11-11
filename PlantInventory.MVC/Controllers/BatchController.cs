@@ -52,6 +52,7 @@ namespace PlantInventory.MVC.Controllers
                 var herbService = CreateHerbService();
                 var herbName = herbService.GetHerbName(model.HerbId);
                 
+
                 TempData["SaveResult"] = $"You have created a new batch of {herbName} received on {model.DateReceived.DayOfYear}.";
                 return RedirectToAction("Index");
             }
@@ -68,7 +69,7 @@ namespace PlantInventory.MVC.Controllers
 
             return View(model);
         }
-        public ActionResult Edit(int id)
+        public ActionResult EditBatch(int id)
         {
             var service = CreateBatchService();
             var edit = service.GetBatchByID(id);
@@ -80,6 +81,30 @@ namespace PlantInventory.MVC.Controllers
                 IsArchived = edit.IsArchived,
                 ArchiveComment = edit.ArchiveComment
             };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditBatch(int id, BatchEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.BatchId != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            }
+
+            var service = CreateBatchService();
+
+            if (service.EditBatch(model))
+            {
+                TempData["SaveResult"] = "You have updated this Batch.";
+                return RedirectToAction("Index"); //could give me problems without a specified ID for the index
+            }
+
+            ModelState.AddModelError("", "We were unable to update the batch. Please ensure your data is correct.");
             return View(model);
         }
     }
