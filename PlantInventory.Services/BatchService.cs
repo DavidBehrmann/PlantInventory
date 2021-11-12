@@ -34,6 +34,18 @@ namespace PlantInventory.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+        //Get batches by creat DateTime
+        public Batch GetNewestCreatedBatch()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var oneMinute = new TimeSpan(0, 1, 0);
+                var query = ctx.Batches.Where(e => e.DateReceived > DateTimeOffset.UtcNow - oneMinute).OrderByDescending(e => e.DateReceived).Take(1);
+                return (Batch)query;
+            }
+        
+        }
+
         //Get all Batches
         public IEnumerable<BatchDetail> GetBatches(int herbId)
         {

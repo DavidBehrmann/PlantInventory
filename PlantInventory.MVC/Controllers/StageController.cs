@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using PlantInventory.Models.StageModels;
 using PlantInventory.Services;
+using PlantInventory.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +54,53 @@ namespace PlantInventory.MVC.Controllers
         }
 
         //Have stage update when Moves are created (stageEdit)
+        /*public ActionResult UpdateLocationCountsAfterMoveIsCreated(int id)
+        {
+            var stageService = CreateStageService();
+            var update = stageService.GetStageByID(id);
+            var model = new StageUpdateAfterMove
+            {
+                CountGrowRoom = update.CountGrowRoom,
+                CountFreshCut = update.CountFreshCut,
+                CountDump = update.CountDump,
+                CountPacking = update.CountPacking
+            };
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateLocationCountsAfterMoveIsCreated(int id, StageUpdateAfterMove model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            var stageService = CreateStageService();
+            var moveService = CreateMoveService();
+
+            if (model.StageId != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            }
+
+            var stageBatchId = stageService.GetStageByBatchID(model.BatchId).BatchId;
+            var moveBatchId = moveService.GetMoveByBatchID(model.BatchId).BatchId;
+            
+            if (stageBatchId == moveBatchId)
+            {
+                switch (moveService.GetMoveByBatchID(model.BatchId).MoveTo)
+                {
+                    case location.growRoom: moveService.MoveToGrowRoom();
+                }
+
+                if (stageService.UpdateStageAfterNewMoveCreated(model))
+                {
+                    TempData["SaveResult"] = "The Stage has been updated.";
+                    return RedirectToAction("Index");
+                }
+            }
+            ModelState.AddModelError("", "There was an error in updating the stages.");
+            return View(model);
+        }*/
 
 
         //Archive method (to archive if batch gets archived)
@@ -75,6 +123,12 @@ namespace PlantInventory.MVC.Controllers
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new HerbService(userId);
+            return service;
+        }
+        private MoveService CreateMoveService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new MoveService(userId);
             return service;
         }
     }

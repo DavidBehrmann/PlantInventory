@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using PlantInventory.Data;
 using PlantInventory.Models.MoveModels;
 using PlantInventory.Services;
 using System;
@@ -30,7 +31,7 @@ namespace PlantInventory.MVC.Controllers
             var service = new MoveService(userId);
             return service;
         }
-
+        
         // GET: Move
         public ActionResult Index(int batchId)
         {
@@ -58,8 +59,24 @@ namespace PlantInventory.MVC.Controllers
                 var herbId = batchService.GetBatchByID(model.BatchId).HerbId;
                 var herbName = herbService.GetHerbName(herbId);
 
+                switch (model.MoveTo)
+                {
+                    case location.growRoom:
+                        service.MoveToGrowRoom(model);
+                        break;
+                    case location.freshCut:
+                        service.MoveToFreshCut(model);
+                        break;
+                    case location.packing:
+                        service.MoveToPacking(model);
+                        break;
+                    case location.dump:
+                        service.MoveToDump(model);
+                        break;
+                }
+
                 TempData["SaveResult"] = $"You have moved {model.NumberOfPotsMoved} pots of {herbName} from {model.MoveFrom} to {model.MoveTo}.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", model.BatchId);
             }
             ModelState.AddModelError("", "This move has NOT been recorded. Please ensure your data is correct.");
             return View(model);
@@ -116,12 +133,14 @@ namespace PlantInventory.MVC.Controllers
             if (service.EditMove(model))
             {
                 TempData["SaveResult"] = "You have updated the move.";
-                return RedirectToAction("Index"); //could give me problems without a specified ID for the index
+                return RedirectToAction("Index", model.BatchId); //could give me problems without a specified ID for the index
             }
 
             ModelState.AddModelError("", "We were unable to update the move. Please ensure your data is correct.");
             return View(model);
-        }   
-        
+        }
+
+      
+    
     }
 }

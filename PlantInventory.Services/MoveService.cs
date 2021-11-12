@@ -101,6 +101,26 @@ namespace PlantInventory.Services
                 };
             }
         }
+        public MoveDetail GetMoveByBatchID(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Moves.Single(e => e.BatchId == id);
+                return new MoveDetail
+                {
+                    MoveId = entity.MoveId,
+                    BatchId = entity.BatchId,
+                    MoveFrom = entity.MoveFrom,
+                    MoveTo = entity.MoveTo,
+                    Comment = entity.Comment,
+                    NumberOfPotsMoved = entity.NumberOfPotsMoved,
+                    DateMoved = entity.DateMoved,
+                    ModifiedUTC = entity.ModifiedUTC,
+                    IsArchived = entity.IsArchived,
+                    ArchiveComment = entity.ArchiveComment
+                };
+            }
+        }
 
         //Edit Move
         public bool EditMove(MoveEdit model)
@@ -120,7 +140,84 @@ namespace PlantInventory.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+        
+        //moved to packing
+        public bool MoveToPacking(MoveCreate model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var moveFrom = model.MoveFrom;
+                var potsMoved = model.NumberOfPotsMoved;
 
+                var stage = ctx.Stages.Single(e => e.BatchId == model.BatchId);
 
+                stage.CountPacking += potsMoved;
+                stage.CountGrowRoom -= potsMoved;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        public bool MoveToGrowRoom(MoveCreate model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var moveFrom = model.MoveFrom;
+                var potsMoved = model.NumberOfPotsMoved;
+
+                var stage = ctx.Stages.Single(e => e.BatchId == model.BatchId);
+
+                stage.CountPacking -= potsMoved;
+                stage.CountGrowRoom += potsMoved;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        //move to freshcut
+        public bool MoveToFreshCut(MoveCreate model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var moveFrom = model.MoveFrom;
+                var potsMoved = model.NumberOfPotsMoved;
+
+                var stage = ctx.Stages.Single(e => e.BatchId == model.BatchId);
+
+                stage.CountFreshCut += potsMoved;
+                if (moveFrom == location.growRoom)
+                {
+                stage.CountGrowRoom -= potsMoved;
+                }
+                if (moveFrom == location.packing)
+                {
+                    stage.CountPacking -= potsMoved;
+                }
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        //move to dump
+        public bool MoveToDump(MoveCreate model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var moveFrom = model.MoveFrom;
+                var potsMoved = model.NumberOfPotsMoved;
+
+                var stage = ctx.Stages.Single(e => e.BatchId == model.BatchId);
+
+                stage.CountDump += potsMoved;
+                if (moveFrom == location.growRoom)
+                {
+                    stage.CountGrowRoom -= potsMoved;
+                }
+                if (moveFrom == location.packing)
+                {
+                    stage.CountPacking -= potsMoved;
+                }
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
