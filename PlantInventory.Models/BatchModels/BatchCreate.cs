@@ -14,9 +14,9 @@ namespace PlantInventory.Models.BatchModels
         public int HerbId { get; set; }
         [Required]
         public int TotalPotCount { get; set; }
-        [Required]
-        public DateTimeOffset DateReceived { get; set; }
-        public bool IsArchived { get; set; }
+        /*[Required]*/
+/*        public DateTimeOffset DateReceived { get; set; }
+*/        public bool IsArchived { get; set; }
 
     }
 }

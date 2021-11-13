@@ -15,14 +15,14 @@ namespace PlantInventory.MVC.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "I made this to show that I could code well.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Please reach out with any questions or concerns.";
 
             return View();
         }

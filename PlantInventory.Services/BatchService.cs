@@ -25,7 +25,7 @@ namespace PlantInventory.Services
                 UserId = _userID,
                 HerbId = model.HerbId,
                 TotalPotCount = model.TotalPotCount,
-                DateReceived = model.DateReceived,
+                DateReceived = DateTimeOffset.UtcNow.DateTime,
                 IsArchived = false
             };
             using (var ctx = new ApplicationDbContext())
@@ -35,13 +35,15 @@ namespace PlantInventory.Services
             }
         }
         //Get batches by creat DateTime
-        public Batch GetNewestCreatedBatch()
+        public int GetNewestCreatedBatch()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var oneMinute = new TimeSpan(0, 1, 0);
-                var query = ctx.Batches.Where(e => e.DateReceived > DateTimeOffset.UtcNow - oneMinute).OrderByDescending(e => e.DateReceived).Take(1);
-                return (Batch)query;
+                /* var oneMinute = new TimeSpan(0, 1, 0);
+                 var query = ctx.Batches.Where(e => e.DateReceived > DateTimeOffset.UtcNow.DateTime - oneMinute).OrderByDescending(e => e.DateReceived).Take(1);*/
+
+                var query = ctx.Batches.Select(e => e.BatchId).Max();
+                return query;
             }
         
         }
@@ -104,7 +106,7 @@ namespace PlantInventory.Services
 
                 entity.HerbId = model.HerbId;
                 entity.TotalPotCount = model.TotalPotCount;
-                entity.ModifiedUTC = DateTimeOffset.Now;
+                entity.ModifiedUTC = DateTimeOffset.UtcNow.DateTime;
                 entity.IsArchived = model.IsArchived;
                 entity.ArchiveComment = model.ArchiveComment;
 

@@ -8,8 +8,8 @@ namespace PlantInventory.Models.BatchModels
 {
     public class BatchStageViewModel
     {
-        public IEnumerable<BatchDetail> BatchDetails { get; set; }
-        public IEnumerable<StageModels.StageDetail> StageDetails { get; set; }
+        public BatchDetail BatchDetails { get; set; }
+        public StageModels.StageDetail StageDetails { get; set; }
 
     }
 }

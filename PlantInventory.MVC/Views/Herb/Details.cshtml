@@ -1,0 +1,49 @@
+﻿@model PlantInventory.Models.HerbModels.HerbDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.HerbName) Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HerbId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HerbId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HerbName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HerbName)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.IsArchived)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsArchived)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArchiveComment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArchiveComment)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditHerb", new {id = Model.HerbId}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
