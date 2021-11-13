@@ -38,23 +38,7 @@ namespace PlantInventory.Services
             }
         }
         //Get Stage by ID (stage and batch are 1 to 1)
-        public StageDetail GetStageByID(int id)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity = ctx.Stages.Single(e => e.StageId == id);
-                return new StageDetail
-                {
-                    BatchId = entity.BatchId,
-                    CountGrowRoom = entity.CountGrowRoom,
-                    CountPacking = entity.CountPacking,
-                    CountFreshCut = entity.CountFreshCut,
-                    CountDump = entity.CountDump,
-                    IsArchived = entity.IsArchived,
-                    ArchiveComment = entity.ArchiveComment
-                };
-            }
-        }
+        
         public StageDetail GetStageByBatchID(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -72,42 +56,5 @@ namespace PlantInventory.Services
                 };
             }
         }
-
-       /* //Edit Stage 
-        public bool EditStage(StageEdit model)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity = ctx.Stages.Single(e => e.StageId == model.StageId);
-
-                entity.CountGrowRoom = model.CountGrowRoom;
-                entity.CountPacking = model.CountPacking;
-                entity.CountFreshCut = model.CountFreshCut;
-                entity.CountDump = model.CountDump;
-                entity.IsArchived = model.IsArchived;
-                entity.ArchiveComment = model.ArchiveComment;
-
-                return ctx.SaveChanges() == 1;
-            }
-        }
-
-        //Update Stage from new Move
-        public bool UpdateStageAfterNewMoveCreated(StageUpdateAfterMove model)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity = ctx.Stages.Single(e => e.StageId == model.StageId);
-
-                entity.CountGrowRoom = model.CountGrowRoom;
-                entity.CountPacking = model.CountPacking;
-                entity.CountFreshCut = model.CountFreshCut;
-                entity.CountDump = model.CountDump;
-                
-
-                return ctx.SaveChanges() == 1;
-            }
-        }*/
-           
-
     }
 }

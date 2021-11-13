@@ -41,6 +41,10 @@ namespace PlantInventory.MVC.Controllers
 
             return View(model);
         }
+        public ActionResult Create()
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(MoveCreate model)
@@ -133,7 +137,7 @@ namespace PlantInventory.MVC.Controllers
             if (service.EditMove(model))
             {
                 TempData["SaveResult"] = "You have updated the move.";
-                return RedirectToAction("Index", model.BatchId); //could give me problems without a specified ID for the index
+                return RedirectToAction("Index", model.BatchId);
             }
 
             ModelState.AddModelError("", "We were unable to update the move. Please ensure your data is correct.");

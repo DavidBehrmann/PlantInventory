@@ -61,7 +61,7 @@ namespace PlantInventory.MVC.Controllers
                 stageService.CreateStage(newBatch.BatchId);
 
                 TempData["SaveResult"] = $"You have created a new batch of {herbName} received on {model.DateReceived.DayOfYear}.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", model.HerbId);
             }
             ModelState.AddModelError("", "The batch could not be created.");
             return View(model);
@@ -71,10 +71,14 @@ namespace PlantInventory.MVC.Controllers
         public ActionResult GetBatchByID(int id)
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new BatchService(userId);
-            var model = service.GetBatchByID(id);
+            var batchService = new BatchService(userId);
+            var stageService = new StageService(userId);
+            BatchStageViewModel batchStageDetails = new BatchStageViewModel();
+            batchStageDetails.BatchDetails = (IEnumerable<BatchDetail>)batchService.GetBatchByID(id);
+            batchStageDetails.StageDetails = (IEnumerable<PlantInventory.Models.StageModels.StageDetail>)stageService.GetStageByBatchID(id);
+            //I need this method to return the stage details as well so we can display the pot counts by location.
 
-            return View(model);
+            return View(batchStageDetails);
         }
         public ActionResult EditBatch(int id)
         {
@@ -108,7 +112,7 @@ namespace PlantInventory.MVC.Controllers
             if (service.EditBatch(model))
             {
                 TempData["SaveResult"] = "You have updated this Batch.";
-                return RedirectToAction("Index"); //could give me problems without a specified ID for the index
+                return RedirectToAction("Index", model.HerbId);
             }
 
             ModelState.AddModelError("", "We were unable to update the batch. Please ensure your data is correct.");

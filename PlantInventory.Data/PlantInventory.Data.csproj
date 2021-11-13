@@ -81,6 +81,10 @@
     <Compile Include="Migrations\202111062321352_AddedArchiveFunction.Designer.cs">
       <DependentUpon>202111062321352_AddedArchiveFunction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111131528224_ReachedMVP.cs" />
+    <Compile Include="Migrations\202111131528224_ReachedMVP.Designer.cs">
+      <DependentUpon>202111131528224_ReachedMVP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111062321352_AddedArchiveFunction.resx">
       <DependentUpon>202111062321352_AddedArchiveFunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111131528224_ReachedMVP.resx">
+      <DependentUpon>202111131528224_ReachedMVP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

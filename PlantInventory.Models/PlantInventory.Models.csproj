@@ -57,6 +57,7 @@
     <Compile Include="BatchModels\BatchCreate.cs" />
     <Compile Include="BatchModels\BatchDetail.cs" />
     <Compile Include="BatchModels\BatchEdit.cs" />
+    <Compile Include="BatchModels\BatchStageViewModel.cs" />
     <Compile Include="HerbModels\HerbEdit.cs" />
     <Compile Include="HerbModels\HerbCreate.cs" />
     <Compile Include="HerbModels\HerbDetail.cs" />
@@ -67,7 +68,6 @@
     <Compile Include="StageModels\StageCreate.cs" />
     <Compile Include="StageModels\StageDetail.cs" />
     <Compile Include="StageModels\StageEdit.cs" />
-    <Compile Include="StageModels\StageUpdateAfterMove.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
