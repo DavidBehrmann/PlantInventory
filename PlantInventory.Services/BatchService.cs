@@ -87,6 +87,7 @@ namespace PlantInventory.Services
                 var entity = ctx.Batches.Single(e => e.BatchId == id);
                 return new BatchDetail
                 {
+                    HerbId = entity.HerbId,
                     BatchId = entity.BatchId,
                     TotalPotCount = entity.TotalPotCount,
                     DateReceived = entity.DateReceived,
@@ -105,10 +106,11 @@ namespace PlantInventory.Services
                 var entity = ctx.Batches.Single(e => e.BatchId == model.BatchId);
 
                 entity.HerbId = model.HerbId;
+                entity.BatchId = model.BatchId;
                 entity.TotalPotCount = model.TotalPotCount;
                 entity.ModifiedUTC = DateTimeOffset.UtcNow.DateTime;
                 entity.IsArchived = model.IsArchived;
-                entity.ArchiveComment = model.ArchiveComment;
+                
 
                 return ctx.SaveChanges() == 1;
             }

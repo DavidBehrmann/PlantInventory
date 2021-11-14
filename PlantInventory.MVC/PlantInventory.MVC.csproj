@@ -281,13 +281,13 @@
     <Content Include="Views\Herb\EditHerb.cshtml" />
     <Content Include="Views\Batch\Index.cshtml" />
     <Content Include="Views\Batch\Create.cshtml" />
-    <Content Include="Views\Batch\EditBatch.cshtml" />
     <Content Include="Views\Move\Index.cshtml" />
     <Content Include="Views\Move\Create.cshtml" />
     <Content Include="Views\Move\GetMoveByID.cshtml" />
     <Content Include="Views\Move\EditMove.cshtml" />
     <Content Include="Views\Herb\Details.cshtml" />
     <Content Include="Views\Batch\GetBatchByID.cshtml" />
+    <Content Include="Views\Batch\EditBatch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

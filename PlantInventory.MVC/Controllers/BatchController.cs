@@ -102,6 +102,7 @@ namespace PlantInventory.MVC.Controllers
             var model = new BatchEdit
             {
                 HerbId = edit.HerbId,
+                BatchId = edit.BatchId,
                 TotalPotCount = edit.TotalPotCount,
                 ModifiedUTC = DateTimeOffset.Now.Date,
                 IsArchived = edit.IsArchived,
@@ -127,7 +128,7 @@ namespace PlantInventory.MVC.Controllers
             if (service.EditBatch(model))
             {
                 TempData["SaveResult"] = "You have updated this Batch.";
-                return RedirectToAction("Index", model.HerbId);
+                return RedirectToAction("Index", "Batch", new { @id = model.HerbId });
             }
 
             ModelState.AddModelError("", "We were unable to update the batch. Please ensure your data is correct.");

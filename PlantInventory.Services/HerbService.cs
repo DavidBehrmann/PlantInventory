@@ -98,6 +98,7 @@ namespace PlantInventory.Services
             {
                 var entity = ctx.Herbs.Single(e => e.HerbId == model.HerbId);
 
+                entity.HerbId = model.HerbId;
                 entity.HerbName = model.HerbName;
                 entity.IsArchived = model.IsArchived;
                 entity.ArchiveComment = model.ArchiveComment;

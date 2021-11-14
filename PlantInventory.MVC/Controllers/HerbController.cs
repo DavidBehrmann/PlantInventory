@@ -71,6 +71,7 @@ namespace PlantInventory.MVC.Controllers
             var edit = service.GetHerbByID(id);
             var model = new HerbEdit
             {
+                HerbId = edit.HerbId,
                 HerbName = edit.HerbName,
                 IsArchived = edit.IsArchived,
                 ArchiveComment = edit.ArchiveComment
