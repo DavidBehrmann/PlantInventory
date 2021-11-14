@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using PlantInventory.Data;
 using PlantInventory.Models.MoveModels;
+using PlantInventory.MVC.Models;
 using PlantInventory.Services;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace PlantInventory.MVC.Controllers
     [Authorize]
     public class MoveController : Controller
     {
+        private ApplicationDbContext _ctx = new ApplicationDbContext();
+
         private HerbService CreateHerbService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
@@ -41,14 +44,59 @@ namespace PlantInventory.MVC.Controllers
 
             return View(model);
         }
+
+
         public ActionResult Create()
         {
-            return View();
+            List<SelectListItem> herbNames = new List<SelectListItem>();
+            MoveCreate dateReceived = new MoveCreate();
+
+            List<Herb> herbs = _ctx.Herbs.ToList();
+            herbs.ForEach(h =>
+            {
+                herbNames.Add(new SelectListItem
+                {
+                    Text = h.HerbName,
+                    Value = h.HerbId.ToString()
+                });
+                dateReceived.BatchDetails.DateReceive = herbNames;
+                return View(herbNames);
+
+
+
+            })
         }
+
+
+        /*public ActionResult Create()
+        {
+            ViewBag.HerbName = _ctx.Herbs.Select(herb => new SelectListItem
+            {
+                Text = herb.HerbName,
+                Value = herb.HerbId.ToString()
+            }).ToArray();
+
+            ViewBag.DateReceived = _ctx.Batches.Select(batch => new SelectListItem
+            {
+                Text = batch.DateReceived.Month + "/" + batch.DateReceived.Day,
+                Value = batch.BatchId.ToString()
+            });
+            return View(new MoveCreate());
+        }*/
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(MoveCreate model)
         {
+            ViewBag.HerbName = _ctx.Herbs.Select(herb => new SelectListItem
+            {
+                Text = herb.HerbName,
+                Value = herb.HerbId.ToString()
+            }).ToArray();
+            ViewBag.DateReceived = _ctx.Batches.Select(batch => new SelectListItem
+            {
+                Text = batch.DateReceived.Month + "/" + batch.DateReceived.Day,
+                Value = batch.BatchId.ToString()
+            });
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -60,8 +108,9 @@ namespace PlantInventory.MVC.Controllers
             {
                 var herbService = CreateHerbService();
                 var batchService = CreateBatchService();
-                var herbId = batchService.GetBatchByID(model.BatchId).HerbId;
-                var herbName = herbService.GetHerbName(herbId);
+                var batchDetail = batchService.GetBatchByID(model.BatchId);
+                var herbName = herbService.GetHerbName(batchDetail.HerbId);
+
 
                 switch (model.MoveTo)
                 {
@@ -85,6 +134,9 @@ namespace PlantInventory.MVC.Controllers
             ModelState.AddModelError("", "This move has NOT been recorded. Please ensure your data is correct.");
             return View(model);
         }
+
+        
+
         public ActionResult GetArchive(int batchId)
         {
             var userId = Guid.Parse(User.Identity.GetUserId());

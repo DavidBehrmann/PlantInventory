@@ -1,4 +1,5 @@
 ﻿using PlantInventory.Data;
+using PlantInventory.Models.BatchModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace PlantInventory.Models.MoveModels
         public string Comment { get; set; }
         public DateTimeOffset DateMoved { get; set; }
         public bool IsArchived { get; set; }
+        public BatchDetail BatchDetails { get; set; }
+
 
     }
 }

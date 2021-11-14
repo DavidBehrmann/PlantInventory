@@ -64,7 +64,7 @@
 
             <td>
                 @Html.ActionLink("Edit", "EditBatch", new { id = Model.BatchDetails.BatchId }) |
-                @Html.ActionLink("Details", "GetBatchByID", new { id = Model.BatchDetails.BatchId }) |
+                @Html.ActionLink("Details", "Index", "Move", new { id = Model.BatchDetails.BatchId }, null)
             </td>
         </tr>
 
