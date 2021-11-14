@@ -28,7 +28,7 @@ namespace PlantInventory.Services
                 MoveTo = model.MoveTo,
                 NumberOfPotsMoved = model.NumberOfPotsMoved,
                 Comment = model.Comment,
-                DateMoved = DateTimeOffset.Now,
+                DateMoved = DateTimeOffset.UtcNow.Date,
                 IsArchived = false
                 
             };

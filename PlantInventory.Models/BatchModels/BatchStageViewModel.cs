@@ -10,6 +10,7 @@ namespace PlantInventory.Models.BatchModels
     {
         public BatchDetail BatchDetails { get; set; }
         public StageModels.StageDetail StageDetails { get; set; }
+        public HerbModels.HerbDetail HerbDetails { get; set; }
 
     }
 }

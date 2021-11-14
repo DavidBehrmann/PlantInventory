@@ -25,7 +25,7 @@ namespace PlantInventory.Services
                 UserId = _userID,
                 HerbId = model.HerbId,
                 TotalPotCount = model.TotalPotCount,
-                DateReceived = DateTimeOffset.UtcNow.DateTime,
+                DateReceived = DateTimeOffset.UtcNow.Date,
                 IsArchived = false
             };
             using (var ctx = new ApplicationDbContext())
@@ -108,7 +108,7 @@ namespace PlantInventory.Services
                 entity.HerbId = model.HerbId;
                 entity.BatchId = model.BatchId;
                 entity.TotalPotCount = model.TotalPotCount;
-                entity.ModifiedUTC = DateTimeOffset.UtcNow.DateTime;
+                entity.ModifiedUTC = DateTimeOffset.UtcNow.Date;
                 entity.IsArchived = model.IsArchived;
                 
 

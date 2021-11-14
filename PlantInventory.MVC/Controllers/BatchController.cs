@@ -88,9 +88,15 @@ namespace PlantInventory.MVC.Controllers
             var userId = Guid.Parse(User.Identity.GetUserId());
             var batchService = new BatchService(userId);
             var stageService = new StageService(userId);
+            var herbService = new HerbService(userId);
             BatchStageViewModel batchStageDetails = new BatchStageViewModel();
             batchStageDetails.BatchDetails = batchService.GetBatchByID(id);
             batchStageDetails.StageDetails = stageService.GetStageByBatchID(id);
+            batchStageDetails.HerbDetails = herbService.GetHerbByID(batchService.GetBatchByID(id).HerbId);
+
+            batchStageDetails.BatchDetails.BatchId = id;
+            batchStageDetails.HerbDetails.HerbId = batchStageDetails.BatchDetails.HerbId;
+            batchStageDetails.HerbDetails.HerbName = batchStageDetails.HerbDetails.HerbName;
             //I need this method to return the stage details as well so we can display the pot counts by location.
 
             return View(batchStageDetails);
@@ -139,6 +145,12 @@ namespace PlantInventory.MVC.Controllers
         {
             var service = CreateHerbService();
             var herbName = service.GetHerbName(id);
+            return herbName;
+        }
+        public string GetHerbNameForGetBatchByIDView(int herbId)
+        {
+            var service = CreateHerbService();
+            var herbName = service.GetHerbName(herbId);
             return herbName;
         }
     }

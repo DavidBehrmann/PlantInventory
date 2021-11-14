@@ -4,49 +4,64 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>@Html.Action("GetHerbNameForBatchIndexView") Inventory</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Received New Delivery", "Create")
 </p>
+<div>
+    @Html.ActionLink("Back to Inventory", "Index", "Herb")
+</div>
 <table class="table">
     <tr>
-        
+
         <th>
             Product
         </th>
         <th>
             Date Received
         </th>
-       
-        
+
+
         <th>
             Total Received
         </th>
-        
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.Action("GetHerbNameForBatchIndexView")
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.DateReceived.Date)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.Action("GetHerbNameForBatchIndexView")
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalPotCount)
-        </td>
-               
-       
-        <td>
-            @Html.ActionLink("Edit", "EditBatch", new { id = item.BatchId }) |
-            @Html.ActionLink("Details", "GetBatchByID", new { id = item.BatchId }) |
-        </td>
-    </tr>
-}
+            <td>
+                @Html.DisplayFor(modelItem => item.DateReceived.Date)
+            </td>
 
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPotCount)
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Edit", "EditBatch", new { id = item.BatchId }) |
+                @Html.ActionLink("Details", "GetBatchByID", new { id = item.BatchId }) |
+                @Html.ActionLink("Move Plants", "Create", "Move", new { id = item.BatchId }, null)
+
+            </td>
+        </tr>
+
+    }
+    
 </table>
+<p>
+    @Html.ActionLink("Received New Delivery", "Create")
+</p>
+<div>
+    @Html.ActionLink("Back to Inventory", "Index", "Herb")
+</div>
+
+

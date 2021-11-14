@@ -11,9 +11,69 @@
     <hr />
     <dl class="dl-horizontal">
     </dl>
+    @Html.ActionLink("Move Plants", "Create", "Move", new { id = Model.BatchDetails.BatchId }, null)
+    <table class="table">
+        <tr>
+
+            <th>
+                Product
+            </th>
+            <th>
+                Date Received
+            </th>
+            <th>
+                Total Received
+            </th>
+            <th>
+                Count In Grow Room
+            </th><th>
+                Count Sent to Packing
+            </th><th>
+                Count Sent to Fresh Cut
+            </th><th>
+                Count Dumped
+            </th>
+
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.HerbDetails.HerbName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.BatchDetails.DateReceived.Date)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.BatchDetails.TotalPotCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.StageDetails.CountGrowRoom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.StageDetails.CountPacking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.StageDetails.CountFreshCut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.StageDetails.CountDump)
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Edit", "EditBatch", new { id = Model.BatchDetails.BatchId }) |
+                @Html.ActionLink("Details", "GetBatchByID", new { id = Model.BatchDetails.BatchId }) |
+            </td>
+        </tr>
+
+        
+
+    </table>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "EditBatch", new { id = Model.BatchDetails.BatchId }) |
+    @Html.ActionLink("Back to List", "Index", new { id = Model.BatchDetails.BatchId })
 
 </p>
