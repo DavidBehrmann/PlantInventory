@@ -11,7 +11,6 @@
     <hr />
     <dl class="dl-horizontal">
     </dl>
-    @Html.ActionLink("Move Plants", "Create", "Move", new { id = Model.BatchDetails.BatchId }, null)
     <table class="table">
         <tr>
 
@@ -64,7 +63,9 @@
 
             <td>
                 @Html.ActionLink("Edit", "EditBatch", new { id = Model.BatchDetails.BatchId }) |
-                @Html.ActionLink("Details", "Index", "Move", new { id = Model.BatchDetails.BatchId }, null)
+                @Html.ActionLink("View Moves", "Index", "Move", new { id = Model.BatchDetails.BatchId }, null) |
+                @Html.ActionLink("Move Plants", "Create", "Move", new { id = Model.BatchDetails.BatchId }, null)
+
             </td>
         </tr>
 
@@ -73,7 +74,6 @@
     </table>
 </div>
 <p>
-    @Html.ActionLink("Edit", "EditBatch", new { id = Model.BatchDetails.BatchId }) |
     @Html.ActionLink("Back to List", "Index", new { id = Model.BatchDetails.BatchId })
 
 </p>

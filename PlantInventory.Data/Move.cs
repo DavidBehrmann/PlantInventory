@@ -10,9 +10,16 @@ namespace PlantInventory.Data
 {
     public enum location
     {
+        [Display(Name ="Grow Room")]
         growRoom,
+        [Display(Name = "Packing")]
+
         packing,
+        [Display(Name = "Cut")]
+
         freshCut,
+        [Display(Name = "Dumped")]
+
         dump,
     }
     public class Move
@@ -26,6 +33,7 @@ namespace PlantInventory.Data
         [Required]
         public Guid UserId { get; set; }
         [Required]
+
         public location MoveFrom { get; set; }
         [Required]
         public location MoveTo { get; set; }

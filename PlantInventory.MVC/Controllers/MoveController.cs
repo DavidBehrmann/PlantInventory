@@ -36,11 +36,11 @@ namespace PlantInventory.MVC.Controllers
         }
         
         // GET: Move
-        public ActionResult Index(int batchId)
+        public ActionResult Index(int id)
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new MoveService(userId);
-            var model = service.GetAllMovesForABatchNotArchived(batchId);
+            var model = service.GetAllMovesForABatchNotArchived(id);
 
             return View(model);
         }
@@ -145,6 +145,8 @@ namespace PlantInventory.MVC.Controllers
             var edit = service.GetMoveByID(id);
             var model = new MoveEdit
             {
+                MoveId = edit.MoveId,
+                BatchId = edit.BatchId,
                 MoveFrom = edit.MoveFrom,
                 MoveTo = edit.MoveTo,
                 NumberOfPotsMoved = edit.NumberOfPotsMoved,
@@ -172,8 +174,24 @@ namespace PlantInventory.MVC.Controllers
 
             if (service.EditMove(model))
             {
+                
+                switch (model.MoveTo)
+                {
+                    case location.growRoom:
+                        service.MoveToGrowRoomEdit(model);
+                        break;
+                    case location.freshCut:
+                        service.MoveToFreshCutEdit(model);
+                        break;
+                    case location.packing:
+                        service.MoveToPackingEdit(model);
+                        break;
+                    case location.dump:
+                        service.MoveToDumpEdit(model);
+                        break;
+                }
                 TempData["SaveResult"] = "You have updated the move.";
-                return RedirectToAction("Index", model.BatchId);
+                return RedirectToAction("Index", "Move", new { id = model.BatchId });
             }
 
             ModelState.AddModelError("", "We were unable to update the move. Please ensure your data is correct.");

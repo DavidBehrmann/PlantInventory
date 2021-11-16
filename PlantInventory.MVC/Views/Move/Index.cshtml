@@ -7,7 +7,8 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Move Plants", "Create", new { id = Model.ToArray().FirstOrDefault().BatchId })
+    @Html.ActionLink("Back To Batches", "GetBatchByID", "Batch", new { id = Model.ToArray().FirstOrDefault().BatchId }, null)
 </p>
 <table class="table">
     <tr>
@@ -44,16 +45,15 @@
         @Html.DisplayFor(modelItem => item.DateMoved)
     </td>
     <td>
-        @Html.DisplayNameFor(model => model.MoveFrom)
+        @Html.DisplayFor(modelItem => item.MoveFrom)
     </td>
     <td>
-        @Html.DisplayNameFor(model => model.MoveTo)
+        @Html.DisplayFor(modelItem => item.MoveTo)
     </td>
 
     <td>
-        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        @Html.ActionLink("Edit", "EditMove", new { id=item.MoveId }) |
+   
     </td>
 </tr>
 }

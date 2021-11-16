@@ -129,6 +129,8 @@ namespace PlantInventory.Services
             {
                 var entity = ctx.Moves.Single(e => e.MoveId == model.MoveId);
 
+                entity.MoveId = model.MoveId;
+                entity.BatchId = model.BatchId;
                 entity.MoveFrom = model.MoveFrom;
                 entity.MoveTo = model.MoveTo;
                 entity.NumberOfPotsMoved = model.NumberOfPotsMoved;
@@ -214,6 +216,112 @@ namespace PlantInventory.Services
                 if (moveFrom == location.packing)
                 {
                     stage.CountPacking -= potsMoved;
+                }
+
+                return ctx.SaveChanges() == 1;
+            }
+        } //moved to packing
+        public bool MoveToPackingEdit(MoveEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var moveFrom = model.MoveFrom;
+                var potsMoved = model.NumberOfPotsMoved;
+
+                var stage = ctx.Stages.Single(e => e.BatchId == model.BatchId);
+
+                stage.CountPacking += potsMoved;
+                if (moveFrom == location.growRoom)
+                {
+                    stage.CountGrowRoom -= potsMoved;
+                }
+                if (moveFrom == location.freshCut)
+                {
+                    stage.CountFreshCut -= potsMoved;
+                }
+                if (moveFrom == location.dump)
+                {
+                    stage.CountDump -= potsMoved;
+                }
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        public bool MoveToGrowRoomEdit(MoveEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var moveFrom = model.MoveFrom;
+                var potsMoved = model.NumberOfPotsMoved;
+
+                var stage = ctx.Stages.Single(e => e.BatchId == model.BatchId);
+
+                
+                stage.CountGrowRoom += potsMoved;
+                if (moveFrom == location.freshCut)
+                {
+                    stage.CountFreshCut -= potsMoved;
+                }
+                if (moveFrom == location.packing)
+                {
+                    stage.CountPacking -= potsMoved;
+                }
+                if (moveFrom == location.dump)
+                {
+                    stage.CountDump -= potsMoved;
+                }
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        //move to freshcut
+        public bool MoveToFreshCutEdit(MoveEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var moveFrom = model.MoveFrom;
+                var potsMoved = model.NumberOfPotsMoved;
+
+                var stage = ctx.Stages.Single(e => e.BatchId == model.BatchId);
+
+                stage.CountFreshCut += potsMoved;
+                if (moveFrom == location.growRoom)
+                {
+                stage.CountGrowRoom -= potsMoved;
+                }
+                if (moveFrom == location.packing)
+                {
+                    stage.CountPacking -= potsMoved;
+                }if (moveFrom == location.dump)
+                {
+                    stage.CountDump -= potsMoved;
+                }
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        //move to dump
+        public bool MoveToDumpEdit(MoveEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var moveFrom = model.MoveFrom;
+                var potsMoved = model.NumberOfPotsMoved;
+
+                var stage = ctx.Stages.Single(e => e.BatchId == model.BatchId);
+
+                stage.CountDump += potsMoved;
+                if (moveFrom == location.growRoom)
+                {
+                    stage.CountGrowRoom -= potsMoved;
+                }
+                if (moveFrom == location.packing)
+                {
+                    stage.CountPacking -= potsMoved;
+                }if (moveFrom == location.freshCut)
+                {
+                    stage.CountFreshCut -= potsMoved;
                 }
 
                 return ctx.SaveChanges() == 1;
