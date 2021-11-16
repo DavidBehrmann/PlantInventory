@@ -10,7 +10,6 @@ namespace PlantInventory.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "PlantInventory.MVC.Models.ApplicationDbContext";
         }
 
         protected override void Seed(PlantInventory.MVC.Models.ApplicationDbContext context)

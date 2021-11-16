@@ -57,33 +57,9 @@
     <Compile Include="Batch.cs" />
     <Compile Include="Herb.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202111012316084_InitialCreate.cs" />
-    <Compile Include="Migrations\202111012316084_InitialCreate.Designer.cs">
-      <DependentUpon>202111012316084_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111012332554_InitialMigration.cs" />
-    <Compile Include="Migrations\202111012332554_InitialMigration.Designer.cs">
-      <DependentUpon>202111012332554_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111022240256_AddedBatchService.cs" />
-    <Compile Include="Migrations\202111022240256_AddedBatchService.Designer.cs">
-      <DependentUpon>202111022240256_AddedBatchService.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111042306376_AddedBatchService1.cs" />
-    <Compile Include="Migrations\202111042306376_AddedBatchService1.Designer.cs">
-      <DependentUpon>202111042306376_AddedBatchService1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111061514029_AddedServiceLayerMVP.cs" />
-    <Compile Include="Migrations\202111061514029_AddedServiceLayerMVP.Designer.cs">
-      <DependentUpon>202111061514029_AddedServiceLayerMVP.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111062321352_AddedArchiveFunction.cs" />
-    <Compile Include="Migrations\202111062321352_AddedArchiveFunction.Designer.cs">
-      <DependentUpon>202111062321352_AddedArchiveFunction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111131528224_ReachedMVP.cs" />
-    <Compile Include="Migrations\202111131528224_ReachedMVP.Designer.cs">
-      <DependentUpon>202111131528224_ReachedMVP.cs</DependentUpon>
+    <Compile Include="Migrations\202111161919571_InitialMigration.cs" />
+    <Compile Include="Migrations\202111161919571_InitialMigration.Designer.cs">
+      <DependentUpon>202111161919571_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Move.cs" />
@@ -95,26 +71,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202111012316084_InitialCreate.resx">
-      <DependentUpon>202111012316084_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111012332554_InitialMigration.resx">
-      <DependentUpon>202111012332554_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111022240256_AddedBatchService.resx">
-      <DependentUpon>202111022240256_AddedBatchService.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111042306376_AddedBatchService1.resx">
-      <DependentUpon>202111042306376_AddedBatchService1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111061514029_AddedServiceLayerMVP.resx">
-      <DependentUpon>202111061514029_AddedServiceLayerMVP.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111062321352_AddedArchiveFunction.resx">
-      <DependentUpon>202111062321352_AddedArchiveFunction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111131528224_ReachedMVP.resx">
-      <DependentUpon>202111131528224_ReachedMVP.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111161919571_InitialMigration.resx">
+      <DependentUpon>202111161919571_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
