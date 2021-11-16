@@ -15,33 +15,7 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        <h6>What Product would you like to move?</h6>
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.BatchDetails.HerbId, ViewBag.HerbName as IEnumerable<SelectListItem>, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.BatchDetails.HerbId, "", new { @class = "text-danger" })
-        </div>
-
-    
-        <h6>Received on which day?</h6>
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.BatchDetails.HerbId, ViewBag.DateReceived as IEnumerable<SelectListItem>, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.BatchDetails.HerbId, "", new { @class = "text-danger" })
-        </div>
-    
-    
-    
-    </div>
-
-
-
-    <div class="form-group" hidden>
-        @Html.LabelFor(model => model.BatchId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.BatchId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.BatchId, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    @Html.HiddenFor(model => model.BatchId)
 
     <div class="form-group">
         @Html.LabelFor(model => model.NumberOfPotsMoved, htmlAttributes: new { @class = "control-label col-md-2" })

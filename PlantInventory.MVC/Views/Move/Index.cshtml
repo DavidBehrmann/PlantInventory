@@ -11,12 +11,7 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MoveId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BatchId)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.NumberOfPotsMoved)
         </th>
@@ -27,49 +22,40 @@
             @Html.DisplayNameFor(model => model.DateMoved)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ModifiedUTC)
+            @Html.DisplayNameFor(model => model.MoveFrom)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsArchived)
+            @Html.DisplayNameFor(model => model.MoveTo)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ArchiveComment)
-        </th>
+        
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MoveId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BatchId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfPotsMoved)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateMoved)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedUTC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsArchived)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ArchiveComment)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.NumberOfPotsMoved)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Comment)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateMoved)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.MoveFrom)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.MoveTo)
+    </td>
+
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+    </td>
+</tr>
 }
 
 </table>

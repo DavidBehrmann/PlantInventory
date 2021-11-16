@@ -46,25 +46,18 @@ namespace PlantInventory.MVC.Controllers
         }
 
 
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            List<SelectListItem> herbNames = new List<SelectListItem>();
-            MoveCreate dateReceived = new MoveCreate();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var batchService = new BatchService(userId);
+            var batchDetails = batchService.GetBatchByID(id);
 
-            List<Herb> herbs = _ctx.Herbs.ToList();
-            herbs.ForEach(h =>
-            {
-                herbNames.Add(new SelectListItem
-                {
-                    Text = h.HerbName,
-                    Value = h.HerbId.ToString()
-                });
-                dateReceived.BatchDetails.DateReceive = herbNames;
-                return View(herbNames);
+            var model = new MoveCreate();
+            model.BatchId = batchDetails.BatchId;
+            
 
 
-
-            })
+            return View(model);
         }
 
 
@@ -87,16 +80,7 @@ namespace PlantInventory.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(MoveCreate model)
         {
-            ViewBag.HerbName = _ctx.Herbs.Select(herb => new SelectListItem
-            {
-                Text = herb.HerbName,
-                Value = herb.HerbId.ToString()
-            }).ToArray();
-            ViewBag.DateReceived = _ctx.Batches.Select(batch => new SelectListItem
-            {
-                Text = batch.DateReceived.Month + "/" + batch.DateReceived.Day,
-                Value = batch.BatchId.ToString()
-            });
+            
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -129,7 +113,7 @@ namespace PlantInventory.MVC.Controllers
                 }
 
                 TempData["SaveResult"] = $"You have moved {model.NumberOfPotsMoved} pots of {herbName} from {model.MoveFrom} to {model.MoveTo}.";
-                return RedirectToAction("Index", model.BatchId);
+                return RedirectToAction("GetBatchByID", "Batch", new { @id = model.BatchId });
             }
             ModelState.AddModelError("", "This move has NOT been recorded. Please ensure your data is correct.");
             return View(model);
