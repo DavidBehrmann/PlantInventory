@@ -6,12 +6,10 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Move Plants", "Create", "Move", new { id = Model.ToArray().Single().BatchId}, new { @class = "btn btn-success" })
-</p>
+@*
 <p> 
     @Html.ActionLink("Back To Batches", "GetBatchByID", "Batch", new { id = Model.ToArray().FirstOrDefault().BatchId }, new { @class = "btn btn-secondary" })
-</p>
+</p>*@
 <table class="table">
     <tr>
         
@@ -54,7 +52,8 @@
     </td>
 
     <td>
-        @Html.ActionLink("Edit", "EditMove", new { id=item.MoveId }) |
+        @Html.ActionLink("Edit", "EditMove", new { id=item.MoveId }, new { @class = "btn btn-secondary" }) |
+        @Html.ActionLink("Move Plants", "Create", new { id=item.BatchId }, new { @class = "btn btn-primary" })
    
     </td>
 </tr>

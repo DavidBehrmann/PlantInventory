@@ -51,8 +51,8 @@ textarea {
 .btn{
     border-radius: 500px;
 }
-.navbar-right{
-    text-decoration:none;
+.nav navbar-nav navbar-right {
+    text-decoration: none;
     color: inherit;
 }
 
