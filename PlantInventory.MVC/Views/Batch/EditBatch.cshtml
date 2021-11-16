@@ -4,61 +4,63 @@
     ViewBag.Title = "EditBatch";
 }
 
-<h2>EditBatch</h2>
+<h2>Edit Batch</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>BatchEdit</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group" hidden>
-            @Html.LabelFor(model => model.HerbId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HerbId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HerbId, "", new { @class = "text-danger" })
-            </div>
+<div class="form-horizontal">
+
+    <br />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group" hidden>
+        @Html.LabelFor(model => model.HerbId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HerbId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HerbId, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group" hidden>
-            @Html.LabelFor(model => model.BatchId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BatchId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BatchId, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group" hidden>
+        @Html.LabelFor(model => model.BatchId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BatchId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BatchId, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TotalPotCount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TotalPotCount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TotalPotCount, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <h9>Total Received</h9>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TotalPotCount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TotalPotCount, "", new { @class = "text-danger" })
         </div>
-
-        
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsArchived, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsArchived)
-                    @Html.ValidationMessageFor(model => model.IsArchived, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
+    </div>
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+    <br />
+    <div class="form-group">
+        <h9>Do you want to Archive this Product?</h9>
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.IsArchived)
+                @Html.ValidationMessageFor(model => model.IsArchived, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+    <br />
+    <br />
+</div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", new { id = Model.HerbId })
+    @Html.ActionLink("Back to List", "Index", new { id = Model.HerbId }, new { @class = "btn btn-secondary" })
 </div>

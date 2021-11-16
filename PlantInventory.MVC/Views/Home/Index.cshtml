@@ -4,15 +4,24 @@
 
 <div class="jumbotron">
     <h1>Plant Inventory</h1>
-    </div>
-<div class="card" style="width: 18rem;" >
+</div>
+
+<div class="d-grid gap-2">
+    @Html.ActionLink("View Inventory", "Index", "Herb", null, new { @class = "btn btn-primary btn-large" })
+    @Html.ActionLink("Receiving", "Create", "Batch", null, new { @class = "btn btn-primary btn-large" })
+
+</div>
+
+
+
+
+@*<div class="card" style="width: 18rem;" >
     <ul class="list-group list-group-flush">
         <li class="list-group-item"><a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Herb")"><button type="button" class="btn btn-primary btn-lg">View Inventory</button></a></li>
         <li class="list-group-item"><a class="nav-link active" aria-current="page" href="@Url.Action("Create", "Batch")"><button type="button" class="btn btn-primary btn-lg">Receiving</button></a></li>
-       @*                <li class="list-group-item"><button type="button" class="btn btn-primary btn-lg">Archived</button></li>
-        *@
+       
     </ul>
-</div>
+</div>*@
 <div class="row">
     
 </div>

@@ -4,40 +4,46 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Move Plants</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>MoveCreate</h4>
-    <hr />
+    <br />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     @Html.HiddenFor(model => model.BatchId)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.NumberOfPotsMoved, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+<h9>How many pots are you moving?</h9>        <div class="col-md-10">
             @Html.EditorFor(model => model.NumberOfPotsMoved, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.NumberOfPotsMoved, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <br />
+
     <div class="form-group">
-        @Html.LabelFor(model => model.MoveFrom, htmlAttributes: new { @class = "control-label col-md-2" })
+        <h9>Where are they moving from?</h9>
         <div class="col-md-10">
             @Html.EnumDropDownListFor(model => model.MoveFrom, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.MoveFrom, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <br />
+
     <div class="form-group">
-        @Html.LabelFor(model => model.MoveTo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <h9>Where are they moving to?</h9>
         <div class="col-md-10">
             @Html.EnumDropDownListFor(model => model.MoveTo, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.MoveTo, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <br />
 
     <div class="form-group">
         @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -48,16 +54,18 @@
     </div>
 
 
-
+    <br />
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Create" class="btn btn-primary" />
         </div>
     </div>
+    <br />
+    <br />
 </div>
 }
 
 <div>
-    @Html.ActionLink("Back to Product", "GetBatchByID", "Batch", new { id = Model.BatchId }, null)
+    @Html.ActionLink("Back to Product", "GetBatchByID", "Batch", new { id = Model.BatchId }, new { @class = "btn btn-secondary" })
 </div>

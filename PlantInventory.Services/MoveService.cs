@@ -39,11 +39,11 @@ namespace PlantInventory.Services
             }
         }
         //Get Move List
-        public IEnumerable<MoveDetail> GetAllMovesForABatchNotArchived(int batchId)
+        public IEnumerable<MoveDetail> GetAllMovesForABatchNotArchived(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Moves.Where(e => e.BatchId == batchId && e.IsArchived == false).Select(
+                var query = ctx.Moves.Where(e => e.BatchId == id && e.IsArchived == false).Select(
                     e => new MoveDetail
                     {
                         MoveId = e.MoveId,

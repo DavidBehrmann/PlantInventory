@@ -4,11 +4,11 @@
     ViewBag.Title = "GetBatchByID";
 }
 
-<h2>GetBatchByID</h2>
+<h2>Batch Details</h2>
 
 <div>
-    <h4>BatchStageViewModel</h4>
-    <hr />
+    <br />
+    <br />
     <dl class="dl-horizontal">
     </dl>
     <table class="table">
@@ -24,13 +24,13 @@
                 Total Received
             </th>
             <th>
-                Count In Grow Room
+                Grow Room
             </th><th>
-                Count Sent to Packing
+                Sent to Packing
             </th><th>
-                Count Sent to Fresh Cut
+                Cut
             </th><th>
-                Count Dumped
+                Dumped
             </th>
 
             <th></th>
@@ -62,9 +62,9 @@
 
 
             <td>
-                @Html.ActionLink("Edit", "EditBatch", new { id = Model.BatchDetails.BatchId }) |
-                @Html.ActionLink("View Moves", "Index", "Move", new { id = Model.BatchDetails.BatchId }, null) |
-                @Html.ActionLink("Move Plants", "Create", "Move", new { id = Model.BatchDetails.BatchId }, null)
+                @Html.ActionLink("Edit", "EditBatch", new { id = Model.BatchDetails.BatchId }, new { @class = "btn btn-outline-secondary" }) |
+                @Html.ActionLink("View Moves", "Index", "Move", new { id = Model.BatchDetails.BatchId }, new { @class = "btn btn-outline-info" }) |
+                @Html.ActionLink("Move Plants", "Create", "Move", new { id = Model.BatchDetails.BatchId }, new { @class = "btn btn-success" })
 
             </td>
         </tr>
@@ -74,6 +74,6 @@
     </table>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index", new { id = Model.BatchDetails.BatchId })
+    @Html.ActionLink("Back to List", "Index", new { id = Model.BatchDetails.HerbId }, new { @class = "btn btn-secondary" })
 
 </p>

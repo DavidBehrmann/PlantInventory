@@ -7,7 +7,7 @@
 <h2>Plant Inventory</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -27,8 +27,8 @@
         </td>
         
         <td>
-            @Html.ActionLink("Edit", "EditHerb", new { id=item.HerbId}) |
-            @Html.ActionLink("Details", "Index", "Batch", new { id = item.HerbId }, null)
+            @Html.ActionLink("Edit", "EditHerb", new { id=item.HerbId}, new { @class = "btn btn-outline-secondary" }) |
+            @Html.ActionLink("Details", "Index", "Batch", new { id = item.HerbId }, new { @class = "btn btn-outline-info" })
         </td>
     </tr>
 }

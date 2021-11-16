@@ -7,8 +7,10 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Move Plants", "Create", new { id = Model.ToArray().FirstOrDefault().BatchId })
-    @Html.ActionLink("Back To Batches", "GetBatchByID", "Batch", new { id = Model.ToArray().FirstOrDefault().BatchId }, null)
+    @Html.ActionLink("Move Plants", "Create", "Move", new { id = Model.ToArray().Single().BatchId}, new { @class = "btn btn-success" })
+</p>
+<p> 
+    @Html.ActionLink("Back To Batches", "GetBatchByID", "Batch", new { id = Model.ToArray().FirstOrDefault().BatchId }, new { @class = "btn btn-secondary" })
 </p>
 <table class="table">
     <tr>

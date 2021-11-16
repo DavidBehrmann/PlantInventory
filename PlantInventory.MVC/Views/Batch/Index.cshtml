@@ -7,10 +7,10 @@
 <h2>@Html.Action("GetHerbNameForBatchIndexView") Inventory</h2>
 
 <p>
-    @Html.ActionLink("Received New Delivery", "Create")
+    @Html.ActionLink("Received New Delivery", "Create", null, new { @class = "btn btn-success" })
 </p>
 <div>
-    @Html.ActionLink("Back to Inventory", "Index", "Herb")
+    @Html.ActionLink("Back to Inventory", "Index", "Herb", null, new { @class = "btn btn-secondary" })
 </div>
 <table class="table">
     <tr>
@@ -47,9 +47,9 @@
 
 
             <td>
-                @Html.ActionLink("Edit", "EditBatch", new { id = item.BatchId }) |
-                @Html.ActionLink("Details", "GetBatchByID", new { id = item.BatchId }) |
-                @Html.ActionLink("Move Plants", "Create", "Move", new { id = item.BatchId },null)
+                @Html.ActionLink("Edit", "EditBatch", new { id = item.BatchId }, new { @class = "btn btn-outline-secondary" }) |
+                @Html.ActionLink("Details", "GetBatchByID", new { id = item.BatchId }, new { @class = "btn btn-outline-info" }) |
+                @Html.ActionLink("Move Plants", "Create", "Move", new { id = item.BatchId }, new { @class = "btn btn-success" })
 
             </td>
         </tr>
@@ -58,10 +58,10 @@
     
 </table>
 <p>
-    @Html.ActionLink("Received New Delivery", "Create")
+    @Html.ActionLink("Received New Delivery", "Create", null, new { @class = "btn btn-success" })
 </p>
 <div>
-    @Html.ActionLink("Back to Inventory", "Index", "Herb")
+    @Html.ActionLink("Back to Inventory", "Index", "Herb", null, new { @class = "btn btn-secondary" })
 </div>
 
 
